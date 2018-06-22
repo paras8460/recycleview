@@ -1,0 +1,7 @@
+ private void fillList(List<GrapeVinerList> mList){
+        mAdapter = new CoustomAdeptor(mList);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(mLayoutManager);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setAdapter(mAdapter);
+    }
