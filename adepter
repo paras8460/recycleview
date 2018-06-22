@@ -1,0 +1,62 @@
+
+
+public class CoustomAdeptor extends  RecyclerView.Adapter<CoustomAdeptor.ViewHolder> {
+    List<GrapeVinerList> grapeVinerLists;
+    Context context;
+
+    public CoustomAdeptor(List<GrapeVinerList> grapeVinerLists) {
+        this.grapeVinerLists = grapeVinerLists;
+    }
+
+    @NonNull
+    @Override
+
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
+        View itemView = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.row_layout, parent, false);
+
+
+        return new ViewHolder(itemView);
+
+
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        final GrapeVinerList grapeVinerList=grapeVinerLists.get(position);
+        holder.txtname.setText(grapeVinerList.getName());
+        holder.txtemail.setText(grapeVinerList.getEmail());
+        holder.txtmobile.setText(grapeVinerList.getMobile());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(v.getContext(), Main2Activity.class);
+                v.getContext().startActivity(intent);
+                Toast.makeText(v.getContext(), "os version is: " +grapeVinerList.getEmail(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    @Override
+    public int getItemCount() {
+        return grapeVinerLists.size();
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder {
+
+        public TextView txtname;
+        public TextView txtemail;
+        public TextView txtmobile;
+
+        public ViewHolder(View itemView) {
+            super(itemView);
+            txtname = (TextView) itemView.findViewById(R.id.txt_name);
+            txtemail = (TextView) itemView.findViewById(R.id.txt_email);
+            txtmobile = (TextView) itemView.findViewById(R.id.txt_mobile);
+        }
+
+    }
+
+}
